@@ -18,16 +18,14 @@ fetch(`https://www.riteaid.com/services/ext/v2/stores/getStores?address=${zipCod
 
 function getAvailability(stores) {
 	const today = new Date();
-	const time =
-		today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
+	const time = today.getHours() + ':' + today.getMinutes() + ':' + today.getSeconds();
 	console.log(`\x1b[1mGrabbing availability\x1b[0m @ ${time}`);
 	console.log(link);
 	let promises = [];
 	for (const store of stores) {
 		promises.push(
-			fetch(
-				`https://www.riteaid.com/services/ext/v2/vaccine/checkSlots?storeNumber=${store.storeNumber}`
-			).then((res) => res.json())
+			fetch(`https://www.riteaid.com/services/ext/v2/vaccine/checkSlots?storeNumber=${store.storeNumber}`)
+			.then((res) => res.json())
 		);
 	}
 
